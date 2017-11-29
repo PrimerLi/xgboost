@@ -1,0 +1,3 @@
+optimal theta = 0.5
+AUC of F1 vs. theta = 0.552028477228
+penalty = 0.316763701531
