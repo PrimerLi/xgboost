@@ -1,4 +1,7 @@
 import xgboost
+
+#The train file and test file should be conform to the libsvm text file format.
+#use convert.py to convert csv file to libsvm file. 
 def main():
     import os
     import sys

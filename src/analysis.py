@@ -1,5 +1,18 @@
 #!/usr/bin/env python
 
+def get_labels(inputFileName):
+    import os
+    assert(os.path.exists(inputFileName))
+    labels = []
+    ifile = open(inputFileName, "r")
+    for (index, string) in enumerate(ifile):
+        if (index == 0):
+            continue
+        else:
+            labels.append(float(string.split(',')[-1]))
+    ifile.close()
+    return labels
+
 def read_labels(inputFileName):
     import os
     import sys
@@ -8,8 +21,8 @@ def read_labels(inputFileName):
     labels = []
     ifile = open(inputFileName, "r")
     for (index, string) in enumerate(ifile):
-        a = string.split()
-        labels.append(float(a[0]))
+        a = string.split(',')
+        labels.append(float(a[-1]))
     ifile.close()
 
     return labels
@@ -129,7 +142,7 @@ def main():
     prediction_file = sys.argv[2]
     assert(os.path.exists(label_file))
     assert(os.path.exists(prediction_file))
-    labels = read_labels(label_file)
+    labels = get_labels(label_file)
     predictions = read_labels(prediction_file)
     get_ROC_PR(labels, predictions, 40)
     return 0
